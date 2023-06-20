@@ -1,0 +1,54 @@
+
+{
+  "listingData": [
+    {
+      "id": "1",
+      "title": "Clean up job",
+      "description": "A clean up job for a 2 bedroom house.",
+      "budget": 120,
+      "jobType": "Cleaning",
+      "contractorType": "Independent",
+      "propertyId": "1"
+    },
+    {
+      "id": "2",
+      "title": "Renovation job",
+      "description": "A renovation job for a 3 bedroom house.",
+      "budget": 5000,
+      "jobType": "Renovation",
+      "contractorType": "Company",
+      "propertyId": "2"
+    }
+  ],
+  "propertyData": [
+    {
+      "id": "1",
+      "Address": "123 ABC Street",
+      "City": "New York",
+      "State": "NY",
+      "Zip": 12345,
+      "Beds": 2,
+      "Baths": 1,
+      "Sqft": 1200,
+      "Type": "Residential",
+      "Status": "Available",
+      "Image": "https://via.placeholder.com/150",
+      "Desc": "A lovely 2 bedroom house."
+    },
+    {
+      "id": "2",
+      "Address": "456 DEF Street",
+      "City": "Chicago",
+      "State": "IL",
+      "Zip": 67890,
+      "Beds": 3,
+      "Baths": 2,
+      "Sqft": 1800,
+      "Type": "Residential",
+      "Status": "Available",
+      "Image": "https://via.placeholder.com/150",
+      "Desc": "A beautiful 3 bedroom house."
+    }
+  ]
+}
+
