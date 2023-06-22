@@ -1,44 +1,26 @@
 package db
 
 import (
-	"database/sql"
 	"log"
-
-	_ "github.com/mattn/go-sqlite3"
+  
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+  
+	"backend/app/models"
 )
 
 var (
-	// DBCon is the connection handle
-	// for the database
-	DBCon *sql.DB
+	DB *gorm.DB
 )
 
 func InitDB(filepath string) {
 	var err error
-	DBCon, err = sql.Open("sqlite3", filepath)
+	DB, err = gorm.Open(sqlite.Open(filepath), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	statement, err := DBCon.Prepare(`
-		CREATE TABLE IF NOT EXISTS properties(
-			id TEXT PRIMARY KEY, 
-			address TEXT, 
-			city TEXT, 
-			state TEXT, 
-			zip INTEGER, 
-			beds INTEGER, 
-			baths INTEGER, 
-			sqft INTEGER, 
-			type TEXT, 
-			status TEXT, 
-			image TEXT, 
-			desc TEXT
-		);`)
-	if err != nil {
-		log.Fatal(err)
-	}
-	_, err = statement.Exec()
+	err = DB.AutoMigrate(&models.Property{}, &models.Listing{})
 	if err != nil {
 		log.Fatal(err)
 	}

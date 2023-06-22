@@ -18,7 +18,10 @@ func NewListingHandler(db *gorm.DB) *ListingHandler {
 func (h *ListingHandler) CreateListing(c *fiber.Ctx) error {
 	var listing models.Listing
 	if err := c.BodyParser(&listing); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "err.Error()"})
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+	}
+	if err := h.db.Create(&listing).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Error creating the listing"})
 	}
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"data": listing})
 }
@@ -30,3 +33,4 @@ func (h *ListingHandler) GetListing(c *fiber.Ctx) error {
 	}
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"data": listings})
 }
+

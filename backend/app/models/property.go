@@ -4,7 +4,6 @@ import "gorm.io/gorm"
 
 type Property struct {
 	gorm.Model
-	ID      string `json:"id"`
 	Address string `json:"address"`
 	City    string `json:"city"`
 	State   string `json:"state"`
@@ -17,3 +16,4 @@ type Property struct {
 	Image   string `json:"image"`
 	Desc    string `json:"desc"`
 }
+

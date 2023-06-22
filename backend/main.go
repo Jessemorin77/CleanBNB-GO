@@ -1,27 +1,19 @@
 package main
 
 import (
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
-
-	"backend/app/models"
-	"backend/app/handlers"
+	"github.com/Jessemorin77/CleanBNB-GO/backend/app/models"
+	"github.com/Jessemorin77/CleanBNB-GO/backend/app/handlers"
+	"github.com/Jessemorin77/CleanBNB-GO/backend/app/db"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	db, err := gorm.Open(sqlite.Open("./test.db"), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect to database")
-	}
-
-	// Auto Migrate Database
-	db.AutoMigrate(&models.Property{})
+	db.InitDB("./test.db")
 
 	app := fiber.New()
 
-	handlers.SetupRoutes(app, db)
+	handlers.SetupRoutes(app, db.DB)
 
 	app.Listen(":3000")
 }
