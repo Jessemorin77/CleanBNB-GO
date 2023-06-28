@@ -18,6 +18,6 @@ func SetupRoutes(app *fiber.App, db *gorm.DB) {
 	app.Get("/listings", listingHandler.GetListing)
 
 	//Bid Routes
-
+    
 	//Chat Routes
 }

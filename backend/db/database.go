@@ -15,8 +15,10 @@ var (
 
 func InitDB(filepath string) {
 	var err error
-	DB, err = gorm.Open(sqlite.Open(filepath), &gorm.Config{})
-	if err != nil {
+	
+  DB, err = gorm.Open(sqlite.Open(filepath), &gorm.Config{})
+
+  if err != nil {
 		log.Fatal(err)
 	}
 
