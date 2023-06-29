@@ -1,0 +1,46 @@
+[POST] /api/property
+- Requires authentication token in the request header.
+- Allows users to send a JSON object representing their property.
+- Stores the property data in the backend associated with the authenticated user.
+
+[GET] /api/property
+- Requires authentication token in the request header.
+- Retrieves the JSON data of the user's property.
+
+[POST] /api/listings
+- Requires authentication token in the request header.
+- Allows owners to create a listing for their property.
+- Accepts the necessary information for the listing, such as title, description, and desired price.
+
+[GET] /api/listings
+- Retrieves all active property listings.
+- Returns a JSON array of listings.
+
+[POST] /api/bids
+- Requires authentication token in the request header.
+- Allows users to place a bid on a property listing.
+- Accepts the listing ID and bid amount.
+
+[POST] /api/listings/{listing_id}/accept
+- Requires authentication token in the request header and authorization as the listing owner.
+- Allows the listing owner to accept a bid on their listing.
+- Takes the listing ID and bid ID as parameters.
+
+[GET] /api/chat/{chat_id}
+- Requires authentication token in the request header and authorization as a participant in the chat.
+- Retrieves the chat history for a specific chat ID.
+
+[POST] /api/chat/{chat_id}/message
+- Requires authentication token in the request header and authorization as a participant in the chat.
+- Allows participants to send messages in a chat.
+- Accepts the chat ID and the message content.
+
+[POST] /api/job/{job_id}/complete
+- Requires authentication token in the request header and authorization as the cleaner.
+- Marks a job as completed.
+- Takes the job ID as a parameter.
+
+[POST] /api/payment/{job_id}/confirm
+- Requires authentication token in the request header and authorization as the owner.
+- Confirms the payment for a completed job.
+- Takes the job ID as a parameter.

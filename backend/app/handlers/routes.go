@@ -1,23 +1,35 @@
+
 package handlers
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"gorm.io/gorm"
+	"github.com/gofiber/fiber/v2/middleware/session"
+  "gorm.io/gorm"
 )
 
 func SetupRoutes(app *fiber.App, db *gorm.DB) {
 	propertyHandler := NewPropertyHandler(db)
 	listingHandler := NewListingHandler(db)
 
-	//Property Routes
-	app.Post("/properties", propertyHandler.CreateProperty)
-	app.Get("/properties", propertyHandler.GetProperties)
+	propertyRoutes := app.Group("/properties")
+	propertyRoutes.Use(session.New())
+	propertyRoutes.Use(AuthMiddleware())
 
-	//Listing Routes
-	app.Post("/listings", listingHandler.CreateListing)	
-	app.Get("/listings", listingHandler.GetListing)
+	listingRoutes := app.Group("/listings")
+	listingRoutes.Use(session.New())
+	listingRoutes.Use(AuthMiddleware())
 
-	//Bid Routes
-    
-	//Chat Routes
+	// Property Routes
+	propertyRoutes.Post("/", propertyHandler.CreateProperty)
+	propertyRoutes.Get("/", propertyHandler.GetProperties)
+
+	// Listing Routes
+	listingRoutes.Post("/", listingHandler.CreateListing)
+	listingRoutes.Get("/", listingHandler.GetListing)
+
+	// Bid Routes
+
+	// Chat Routes
 }
+
+
